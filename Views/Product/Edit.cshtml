@@ -1,0 +1,93 @@
+﻿@model DCNE_Cake.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken();
+    
+    @Html.HiddenFor(model => model.ProductId)
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h2>Edit</h2>
+            </div>
+
+            @*To display picture of product*@
+            <div class="col-md-5">
+                <div id="changePicture">
+                    <div class="thumbnail">
+                        <img src="@Url.Content(@Model.PictureUrl)" alt ="Picture" />
+                    </div>
+                    @Ajax.ActionLink("Change Picture", "ChangePicture",
+                        ajaxOptions: new AjaxOptions
+                        {
+                            Confirm = "Do you want to change the picture",
+                            HttpMethod = "GET",
+                            LoadingElementDuration = 50000000,
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "changePicture",
+                        })
+                </div>
+                <div>
+                    <img src="~/Images/loading.gif" id="loadingPhoto" style="display: none" />
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ManufacturedDate, "Mfd Date", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.ManufacturedDate, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(model => model.ManufacturedDate)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.ExpiryDate, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(model => model.ExpiryDate)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductCatId, "Category", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownList("ProductCatId", ViewBag.ProductCatId as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProductCatId)
+                    </div>
+                </div>
+
+
+                <div class="col-md-9 col-md-offset-3">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    @Html.ActionLink("Back to List", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

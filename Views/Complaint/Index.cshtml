@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DCNE_Cake.Models.Complaint>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="row">
+       <div class="col-md-5 col-md-offset-3 col-sm-7 col-sm-offset-2">
+        @using (Html.BeginForm("Index", "Complaint", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+        {
+            <div class="well well-sm">
+                @Html.DisplayName("Find complaint"): <div class="form-group">@Html.TextBox("searchString", "", htmlAttributes: new { @class = "form-control", placeholder = "Search by Location, Category" })</div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        }
+    </div>
+</div>
+
+@if(Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Create New", "Create")
+}
+
+    @Html.ActionLink("GeneratePDF", "GeneratePDF", "Complaint", routeValues: null, htmlAttributes: new{ @class = "btn btn-info list-float marg" })
+<table class="table table-bordered table-stripped">
+    <tr>
+        <th>
+            @Html.ActionLink("Message","Index", new{sortOrder = ViewBag.messageSortParam})
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplaintDate)
+        </th>
+        <th>
+            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.Location })
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new {sortOrder = ViewBag.Category })
+        </th>
+        <th>Manage</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+             @Html.DisplayFor(modelItem => item.ComplaintBox)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplaintDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplaintCategory.ComplaintCatName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ComplaintID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ComplaintID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ComplaintID })
+        </td>
+    </tr>
+}
+
+</table>

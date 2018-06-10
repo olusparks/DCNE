@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DCNE_Cake.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3 col-sm-7 col-sm-offset-2">
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+        {
+            <div class="well well-sm">
+                @Html.DisplayName("Find product"):
+                <div class="form-group">
+                    @Html.TextBox("searchString", "", htmlAttributes: new { @class = "form-control", placeholder = "Search by Name or Category", width = "20px" })
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        }
+    </div>
+</div>
+
+@Html.ActionLink("Create New", "Create", routeValues: null, htmlAttributes: new { @class = "" })
+<table class="table table-stripped table-responsive">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParam })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayName("Picture")
+        </th>
+        <th>
+            @Html.DisplayName("Mfd Date")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.Category })
+        </th>
+        <th>
+            @Html.DisplayName("Date Created")
+        </th>
+        <th>
+            @Html.DisplayName("Manage")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img src="@Url.Content(item.PictureUrl)" alt="picture" width="40" height="40" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory.ProductCat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId })
+                @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
+                {
+                    <text> | </text> @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) <text> | </text>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

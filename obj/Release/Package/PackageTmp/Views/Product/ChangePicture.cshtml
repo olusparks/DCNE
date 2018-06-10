@@ -1,0 +1,6 @@
+﻿@model DCNE_Cake.Models.Product
+
+<div class="form-group">
+    <input type="file" name="file" class="form-control" accept="image/*" />
+    @Html.ValidationMessageFor(model => model.PictureUrl)
+</div>

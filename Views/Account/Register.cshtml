@@ -1,0 +1,93 @@
+﻿@model DCNE_Cake.Models.RegisterModel
+@{
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="page-header">
+                <h2>Register</h2>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "form-control", placeholder = "Enter First name" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.LastName, htmlAttributes: new { @class = "form-control", placeholder = "Enter Last name" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.Phone, htmlAttributes: new { @class = "form-control", placeholder = "Enter Phone Number" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.UserName, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.UserName, htmlAttributes: new { @class = "form-control", placeholder = "Enter Username" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @class = "form-control", placeholder = "Enter Email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "form-control", placeholder = "Enter password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "col-md-4 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.PasswordFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "form-control", placeholder = "Enter password again" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", htmlAttributes: new { @class = "has-error"})
+                </div>
+            </div>
+
+            <button type="submit" class="col-md-offset-4 btn btn-primary">Register</button>
+        </div>
+    </div>
+}
+

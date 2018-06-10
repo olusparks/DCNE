@@ -1,0 +1,43 @@
+﻿@model DCNE_Cake.Models.Complaint
+
+<h3 class="text-center">Your message has been sent</h3>
+
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+            <h4 class="modal-title" id="myModal-label">Complaint Lodged</h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="list-group">
+                <div class="list-group-item">
+                    <strong>@Html.DisplayNameFor(model => model.ComplaintBox) : </strong><span >@Html.DisplayFor(model => model.ComplaintBox)</span>
+                </div>
+                <div class="list-group-item">
+                    <strong>@Html.DisplayNameFor(model => model.ComplaintCategory.ComplaintCatName) : </strong><span >@Html.DisplayFor(model => model.ComplaintCategory.ComplaintCatName)</span>
+                </div>
+                <div class="list-group-item">
+                    <strong>@Html.DisplayNameFor(model => model.Location.LocationName) :</strong> <span >@Html.DisplayFor(model => model.Location.LocationName)</span>
+                </div>
+                <div class="list-group-item">
+                    <strong>Product :</strong> <span class="list-float">@Html.DisplayFor(model => model.Product.Name)</span>
+                </div>
+            </div>
+
+            @*<table>
+                <tr>
+                    <td>@Html.DisplayNameFor(m => m.ComplaintBox)</td>
+                    <td>@Html.ValueFor(m => m.ComplaintBox)</td>
+                </tr>
+            </table>*@
+        </div>
+        <div class="modal-footer">
+             @Html.ActionLink("Done", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-success"})
+            @*<button class="btn btn-primary" id="btnOK" onclick="">OK</button>
+            <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>*@
+        </div>
+    </div>
+</div>

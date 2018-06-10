@@ -1,0 +1,63 @@
+﻿@model DCNE_Cake.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<style>
+    /*Image Zoom*/
+.zoomWindowContainer > div {
+    width: 200px !important;
+    height: 200px !important;
+    border-width: 1px !important;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h2>Details</h2>
+        </div>
+
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="@Url.Content(@Model.PictureUrl)" alt="Picture" data-zoom-image="@Url.Content(@Model.PictureUrl)" class="thumb" />
+                <div class="caption text-center">
+                    @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="list-group">
+                <div class="list-group-item">
+                    @Html.DisplayNameFor(model => model.Price) : <span class="list-float">@Html.DisplayFor(model => model.Price)</span>
+                </div>
+                <div class="list-group-item">
+                    @Html.DisplayNameFor(model => model.ManufacturedDate) : <span class="list-float">@Html.DisplayFor(model => model.ManufacturedDate)</span>
+                </div>
+                <div class="list-group-item">
+                    @Html.DisplayNameFor(model => model.ExpiryDate) : <span class="list-float">@Html.DisplayFor(model => model.ExpiryDate)</span>
+                </div>
+                <div class="list-group-item">
+                    @Html.DisplayNameFor(model => model.ProductCategory.ProductCat) : <span class="list-float">@Html.DisplayFor(model => model.ProductCategory.ProductCat)</span>
+                </div>
+                <div class="list-group-item">
+                     @Html.ActionLink("Edit", "Edit", "Product", new { id = Model.ProductId }, htmlAttributes: new { @class = "btn btn-primary" }) @Html.ActionLink("Back to List", "Index", "Product", routeValues: null, htmlAttributes: new { @class = "btn btn-danger list-float" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(".thumb").elevateZoom({
+        zoomtype: 'inner',
+        cursor: 'crosshair',
+        zoomWindowPosition: 1, 
+        zoomWindowOffetx: 10,
+        scrollZoom: true
+    });
+</script>

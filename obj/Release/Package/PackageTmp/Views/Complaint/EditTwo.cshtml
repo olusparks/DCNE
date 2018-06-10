@@ -1,0 +1,52 @@
+﻿@model DCNE_Cake.Models.ViewModels.ComplaintViewModel
+
+@{
+    ViewBag.Title = "EditTwo";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>EditTwo</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ComplaintViewModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Complaint.ComplaintBox)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Complaint.ComplaintBox)
+            @Html.ValidationMessageFor(model => model.Complaint.ComplaintBox)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Complaint.ComplaintDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Complaint.ComplaintDate)
+            @Html.ValidationMessageFor(model => model.Complaint.ComplaintDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Complaint.Location.LocationName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Complaint.Location.LocationName)
+            @Html.ValidationMessageFor(model => model.Complaint.Location.LocationName)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

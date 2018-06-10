@@ -1,0 +1,37 @@
+﻿@model DCNE_Cake.Models.Complaint
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="page-header">
+            <h2>Details</h2>
+        </div>
+
+        <!--using list group-->
+        <div class="list-group">
+            <div class="list-group-item">
+               @Html.DisplayNameFor(model => model.ComplaintBox) : @Html.DisplayFor(model => model.ComplaintBox)
+            </div>
+
+            <div class="list-group-item">
+                @Html.DisplayNameFor(model => model.ComplaintCategory.ComplaintCatName) : @Html.DisplayFor(m => m.ComplaintCategory.ComplaintCatName)
+            </div>
+
+            <div class="list-group-item">
+                @Html.DisplayNameFor(model => model.ComplaintDate) : @Html.DisplayFor(model => model.ComplaintDate)
+            </div>
+
+            <div class="list-group-item">
+                @Html.DisplayNameFor(model => model.Location.LocationName) : @Html.DisplayFor(model => model.Location.LocationName)
+            </div>
+            
+            <div class="list-group-item">
+                @Html.ActionLink("Back", "Index", "Complaint", new{ id = Model.ComplaintID, @class = "btn btn-danger"})
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+.no-margin{
+	margin:0px;
+}
+
+.no-padding{
+	padding: 0px;
+}
+
+.site-footer{
+	background-color: #222;
+	color: #fff;
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+.bottom-footer{
+	
+	margin-top: 5px;
+	padding-top: 5px;
+	color: #b2b2b2;
+	border-top: 1px solid #b2b2b2;
+}
+
+.footer-nav{
+	text-align: right;
+	list-style: none;
+
+}
+
+.footer-nav li{
+	display: inline;
+}
+
+.footer-nav li:not(:first-child):before {
+	content: '|';
+	padding: 0px 10px;
+}
+
+.footer-nav a{
+	color: #b2b2b2;
+}
+
+.footer-nav a:hover{
+	color:#fff;
+	text-decoration: none;
+
+}
+
+/* login
+----------------------------------------------------------*/
+#login {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+    #login a.username {
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+
+.loginUser {
+    background-color: #fff;
+    display:inline;
+
+}
+
+/*List float for list group items
+    -----------------------------------------------------*/
+.list-float {
+    text-align:justify;
+    float:right;
+}
+
+.marg {
+    margin-bottom: 5px;
+}
+

@@ -1,0 +1,81 @@
+﻿@model DCNE_Cake.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="page-header">
+                <h2>Create Product</h2>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Price)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PictureUrl, "Picture", htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+                    <input type="file" name="file"  class="form-control" accept="image/*"/>
+                    @*@Html.TextBoxFor(model => model.PictureUrl, "file", new { @class = "form-control", type = "file", accept ="image/*" })*@
+                    @Html.ValidationMessageFor(model => model.PictureUrl)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ManufacturedDate, htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+
+                    @Html.TextBoxFor(model => model.ManufacturedDate, new { @class = "form-control date" })
+                    @Html.ValidationMessageFor(model => model.ManufacturedDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.ExpiryDate, new { @class = "form-control date" })
+                    @Html.ValidationMessageFor(model => model.ExpiryDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductCategory.ProductCat, "Category", htmlAttributes: new { @class = "col-md-3 " })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.ProductCatId, ViewBag.ProductCatId as SelectList, "--Select Product Category--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProductCatId)
+                </div>
+            </div>
+
+            <div class="col-md-9 col-md-offset-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                @Html.ActionLink("Back", "Index", routeValues: null, htmlAttributes: new{ @class = "btn btn-danger"})
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div id="Loading" style="display:none">Preview picture...</div>
+        </div>
+    </div>
+}
+

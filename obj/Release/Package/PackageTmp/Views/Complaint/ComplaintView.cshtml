@@ -1,0 +1,44 @@
+﻿@model DCNE_Cake.Models.Complaint
+
+@{
+    ViewBag.Title = "ComplaintView";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>ComplaintView</h2>
+
+<fieldset>
+    <legend>Complaint</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ComplaintBox)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ComplaintBox)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ComplaintDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ComplaintDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LocationID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocationID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ComplaintCatId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ComplaintCatId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ComplaintID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
